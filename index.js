@@ -51,6 +51,9 @@ app.post("/api/upload",upload.single("file"),(req,res)=>{
   res.status(200).json("Image has been uploaded successfully!")
 })
 
+app.get('/', (req, res) => {
+  res.send('Welcome to the API');
+});
 
 app.listen(process.env.PORT,() => {
   connectDB()
