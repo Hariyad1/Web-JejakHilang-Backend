@@ -7,10 +7,10 @@ const jwt = require('jsonwebtoken')
 //REGISTER
 router.post('/register',async(req,res)=>{
   try{
-    const{username,email,password} = req.body
+    const{username,email,password,isAdmin} = req.body
     const salt=await bcrypt.genSalt(10)
     const hashedPassword =await bcrypt.hashSync(password, salt)
-    const newUser = new User({username,email,password:hashedPassword})
+    const newUser = new User({username,email,password:hashedPassword,role:isAdmin?'admin':'user'})
     const savedUser=await newUser.save()
     res.status(200).json(savedUser)
   }
@@ -34,7 +34,7 @@ router.post('/login', async (req, res) => {
       return res.status(401).json("Wrong credentials!");
     }
     const token = jwt.sign(
-      { _id: user._id, username: user.username, email: user.email },
+      { _id: user._id, username: user.username, email: user.email, role: user.role },
       process.env.SECRET,
       { expiresIn: "3d" }
     );
