@@ -29,6 +29,10 @@ const PostSchema = new mongoose.Schema({
   contactNo:{
     type:String,
     required:true
+  },
+  reportType: {
+    type: String,
+    enum: ['Penemu', 'Pencari'],
   }
 },
   {timestamps:true})
