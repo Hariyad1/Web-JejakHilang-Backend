@@ -28,7 +28,8 @@ const PostSchema = new mongoose.Schema({
   },
   contactNo:{
     type:String,
-    required:true
+    required:true,
+    match: [/^\+?[0-9]{9,15}$/, 'Please enter a valid contact number'],
   },
   reportType: {
     type: String,
