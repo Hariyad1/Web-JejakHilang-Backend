@@ -9,7 +9,7 @@ const PostSchema = new mongoose.Schema({
   desc:{
     type:String,
     required:true,
-    unique:true
+    unique:false
   },
   photo:{
     type:String,
@@ -34,6 +34,7 @@ const PostSchema = new mongoose.Schema({
   reportType: {
     type: String,
     enum: ['Penemu', 'Pencari'],
+    required: true,
   }
 },
   {timestamps:true})

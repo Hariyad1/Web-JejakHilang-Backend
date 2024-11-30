@@ -4,26 +4,6 @@ const verifyAdmin = require('../middleware/adminCheck')
 const Post = require('../models/Post')
 const User = require('../models/User')
 
-// Melihat semua laporan kehilangan
-router.get('/lost-items', verifyAdmin, async (req, res) => {
-  try {
-    const reports = await Post.find()
-    res.status(200).json(reports)
-  } catch (err) {
-    res.status(500).json(err)
-  }
-})
-
-// Menghapus laporan kehilangan berdasarkan ID
-router.delete('/lost-items/:id', verifyAdmin, async (req, res) => {
-  try {
-    await Post.findByIdAndDelete(req.params.id)
-    res.status(200).json("Report has been deleted")
-  } catch (err) {
-    res.status(500).json(err)
-  }
-})
-
 // Mendapatkan semua postingan
 router.get('/posts', verifyAdmin, async (req, res) => {
   try {
@@ -52,8 +32,8 @@ router.get('/users', verifyAdmin, async (req, res) => {
     const users = await User.find({
       $or: [
         { role: 'user' },
-        { role: { $exists: false } }, // Untuk role yang tidak ada
-        { role: null } // Untuk role yang null
+        { role: { $exists: false } },
+        { role: null }
       ]
     }).select('username email role');
     res.status(200).json(users);
