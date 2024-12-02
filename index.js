@@ -14,7 +14,6 @@ const ImageKit = require("imagekit");
 const fileUpload = require('express-fileupload');
 const { v4: uuidv4 } = require('uuid');
 
-//database
 const connectDB = async()=>{
   try{
     await mongoose.connect(process.env.MONGO_URL)
@@ -33,7 +32,6 @@ const imagekit = new ImageKit({
   urlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT
 });
 
-//middlewares
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors({
@@ -48,7 +46,6 @@ app.use("/api/comments",commentRoute)
 app.use("/api/admin", adminRoute)
 app.use(fileUpload());
 
-//Image Upload
 app.post("/api/upload", (req, res) => {
   console.log("Request files:", req.files); 
 
