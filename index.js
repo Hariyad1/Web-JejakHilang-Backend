@@ -46,6 +46,10 @@ app.use("/api/comments",commentRoute)
 app.use("/api/admin", adminRoute)
 app.use(fileUpload());
 
+app.get('/', (req, res) => {
+  res.send('Welcome to the API JejakHilang');
+});
+
 app.post("/api/upload", (req, res) => {
   console.log("Request files:", req.files); 
 
