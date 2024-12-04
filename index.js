@@ -34,7 +34,7 @@ const imagekit = new ImageKit({
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-const allowedOrigins = process.env.CORS_ORIGINS ? process.env.CORS_ORIGINS.split(',') : [];
+const allowedOrigins = ['https://web-jejak-hilang-frontend.vercel.app'];
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin) return callback(null, true);
