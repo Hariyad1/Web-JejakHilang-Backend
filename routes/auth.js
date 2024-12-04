@@ -39,7 +39,7 @@ router.post('/login', async (req, res) => {
       { expiresIn: "3d" }
     );
     const { password, ...info } = user._doc;
-    res.cookie("token", token).status(200).json(info);
+    res.status(200).json({ ...info, token });
   } catch (err) {
     console.error("Error during login:", err);
     res.status(500).json(err);
