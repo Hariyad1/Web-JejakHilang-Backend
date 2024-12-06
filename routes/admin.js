@@ -1,9 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const verifyAdmin = require('../middleware/adminCheck')
 const Post = require('../models/Post')
 const User = require('../models/User')
-
+const { verifyAdmin } = require('../middleware/authMiddleware');
 // Mendapatkan semua postingan
 router.get('/posts', verifyAdmin, async (req, res) => {
   try {
